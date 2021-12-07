@@ -47,15 +47,15 @@ function setForecast(response) {
   document.getElementById("forecast").innerHTML = "";
   for (let i = 0; i < 5; i++) {
     
-    let card = `<div class="card text-white m-auto w-100 bg-dark font-weight-bold mb-3" style="max-width: 18rem;">
-    <div id="day1-date" class="card-header">${moment().add(i + 1, 'days').format("MM/DD/YYYY")}</div>
+    let card = `<h4 class="card text-white py-5 m-auto w-100 bg-dark font-weight-bold mb-3" style="max-width: 18rem;">
+    <div id="day1-date" class="card-header m-auto">${moment().add(i + 1, 'days').format("MM/DD/YYYY")}</div>
     <div class="card-body">
         <img src="https://openweathermap.org/img/wn/${response.daily[i].weather[0].icon}.png"></img>
         <p>Temp: ${response.daily[i].temp.day} °F</p>
         <p>Wind: ${response.daily[i].wind_speed} Mph</p>
         <p>Humidity: ${response.daily[i].humidity} %</p>
     </div>
-  </div>`
+  </h3>`
     document.getElementById("forecast").innerHTML += card;
   }
  

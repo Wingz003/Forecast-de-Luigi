@@ -20,16 +20,25 @@
         </div>
         <div class="row">
             <div class="col-2">
-                <div class="input-group input-group-sm">
-                    <input id="city-to-search" type="text" class="form-control" aria-label="Small"
+                <div class="form-group card border-white">
+                    <h2 class="card-header text-left mb-4 bg-white border-white font-weight-bold">Search for a City:</h2>
+                    <input id="city-to-search" type="text" class="form-control w-100 py-4 " aria-label="Small"
                         aria-describedby="inputGroup-sizing-sm">
-                    <button id="search">search</button>
+                    <button id="search" class="bg-primary mt-4 py-3 text-white">Search</button>
                 </div>
-
+                <hr class="rule">
+                <button type="button" class="btn bg-secondary py-3 text-white mb-4 btn-lg btn-block">Block level button</button>
+                <button type="button" class="btn bg-secondary py-3 text-white mb-4 btn-lg btn-block">Block level button</button>
+                <button type="button" class="btn bg-secondary py-3 text-white mb-4 btn-lg btn-block">Block level button</button>
+                <button type="button" class="btn bg-secondary py-3 text-white mb-4 btn-lg btn-block">Block level button</button>
+                <button type="button" class="btn bg-secondary py-3 text-white mb-4 btn-lg btn-block">Block level button</button>
+                <button type="button" class="btn bg-secondary py-3 text-white mb-4 btn-lg btn-block">Block level button</button>
+                <button type="button" class="btn bg-secondary py-3 text-white mb-4 btn-lg btn-block">Block level button</button>
+                <button type="button" class="btn bg-secondary py-3 text-white mb-4 btn-lg btn-block">Block level button</button>
             </div>
-            <div class="col-10">
+            <div class="col-10"> 
                 <div class="row">
-                    <div class="jumbotron jumbotron-fluid mr-2 w-100 h-100">
+                    <div class="jumbotron border border-dark mr-3 w-100 h-100">
                         <div>
                             <h2 id="display-city"></h2>
                             <p id="display-temp"></p>
@@ -38,6 +47,7 @@
                             <p id="display-UV"></p>
                         </div>
                     </div>
+                    <h2 class="row ml-1 mb-5 font-weight-bold"> 5-Day Forecast: </h2>
                 </div>
                 <div id="forecast" class="row">
                 </div>
