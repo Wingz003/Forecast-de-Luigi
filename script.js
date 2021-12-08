@@ -1,16 +1,30 @@
 let searchBtn = document.getElementById("search");
-let cityToSearch = document.getElementById("city-to-search");
+let cityInput = document.getElementById("city-user-input");
 let displayCity = document.getElementById("display-city");
 let displayTemp = document.getElementById("display-temp");
 let displayHumidity = document.getElementById("display-humidity");
 let displayUV = document.getElementById("display-UV");
 let displayWind = document.getElementById("display-wind");
+let savedInputSlot = document.getElementById("saved-input-slot");
+
+ searchBtn.addEventListener("click", function () {
+   getWeatherDataFromOperWeatherMap();
+   updateSearchHistory();
+ })
+
+function updateSearchHistory() {
+  let cityInput = JSON.parse(localStorage.getItem("cityInput"));
+    cityInput.value.push(cityInput.value);
+    localStorage.setItem("cityInput", JSON.stringify(cityInput));
+   
+
+}
 
 
 
-
-searchBtn.addEventListener("click", function() {
-    let geoUrl = 'https://api.openweathermap.org/data/2.5/forecast?q='+cityToSearch.value+'&appid=0c3ce50143c8c2fe7bba1d43adafe5c6';
+function getWeatherDataFromOperWeatherMap() {
+    
+    let geoUrl = 'https://api.openweathermap.org/data/2.5/forecast?q='+cityInput.value+'&appid=0c3ce50143c8c2fe7bba1d43adafe5c6';
     
     let latitude;
     let longitude;
@@ -35,14 +49,14 @@ searchBtn.addEventListener("click", function() {
             console.log(response);
           });
         });
-      })
+      }
       function setCurrentWeather(response) {
         displayTemp.textContent = response.current.temp + " degrees";
         displayHumidity.textContent = response.current.humidity + " %";
         displayWind.textContent = response.current.wind_speed + " mph";
         displayUV.textContent = response.current.uvi + " UV";
       }
-
+      
 function setForecast(response) {
   document.getElementById("forecast").innerHTML = "";
   for (let i = 0; i < 5; i++) {
