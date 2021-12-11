@@ -6,20 +6,38 @@ let displayHumidity = document.getElementById("display-humidity");
 let displayUV = document.getElementById("display-UV");
 let displayWind = document.getElementById("display-wind");
 let savedInputSlot = document.getElementById("saved-input-slot");
+let loadedCities = JSON.parse(localStorage.getItem("cityKey"));
+
+if (!localStorage.getItem("cityKey")) {
+  localStorage.setItem("cityKey", JSON.stringify([]));
+}
 
  searchBtn.addEventListener("click", function () {
    getWeatherDataFromOperWeatherMap();
    updateSearchHistory();
+   renderSearchHistory(loadedCities);
  })
 
-function updateSearchHistory() {
-  let cityInput = JSON.parse(localStorage.getItem("cityInput"));
-    cityInput.value.push(cityInput.value);
-    localStorage.setItem("cityInput", JSON.stringify(cityInput));
-   
+function updateSearchHistory() { 
+  loadedCities.push(cityInput.value);
 
+  localStorage.setItem("cityKey", JSON.stringify(loadedCities));
+  
+  
 }
+function renderSearchHistory(loadedCities) {
+  document.getElementById("saved-input-slot").innerHTML = "";
+  for (let i = 0; i < loadedCities.length; i++) {
+    let lineItems = 
+    
+        `<li><button onclick="getWeatherDataFromOpenWeatherMap(); updateSearchHistory()">${loadedCities[i]}</button></li>`
+    
+    document.getElementById("saved-input-slot").innerHTML += lineItems;
+     
+  }
 
+
+}  
 
 
 function getWeatherDataFromOperWeatherMap() {
