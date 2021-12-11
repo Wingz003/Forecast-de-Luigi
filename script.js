@@ -6,31 +6,35 @@ let displayHumidity = document.getElementById("display-humidity");
 let displayUV = document.getElementById("display-UV");
 let displayWind = document.getElementById("display-wind");
 let savedInputSlot = document.getElementById("saved-input-slot");
-let loadedCities = JSON.parse(localStorage.getItem("cityKey"));
-
+let loadedCities;
 if (!localStorage.getItem("cityKey")) {
   localStorage.setItem("cityKey", JSON.stringify([]));
 }
 
- searchBtn.addEventListener("click", function () {
-   getWeatherDataFromOperWeatherMap();
-   updateSearchHistory();
-   renderSearchHistory(loadedCities);
- })
+searchBtn.addEventListener("click", function () {
+  getWeatherDataFromOpenWeatherMap();
+  updateSearchHistory();
+  renderSearchHistory(loadedCities);
+})
 
 function updateSearchHistory() { 
+  loadedCities = JSON.parse(localStorage.getItem("cityKey"));
   loadedCities.push(cityInput.value);
 
   localStorage.setItem("cityKey", JSON.stringify(loadedCities));
   
   
 }
-function renderSearchHistory(loadedCities) {
+function renderSearchHistory() {
   document.getElementById("saved-input-slot").innerHTML = "";
   for (let i = 0; i < loadedCities.length; i++) {
     let lineItems = 
     
-        `<li><button onclick="getWeatherDataFromOpenWeatherMap(); updateSearchHistory()">${loadedCities[i]}</button></li>`
+        `<li>
+            <button onclick="getWeatherDataFromOpenWeatherMap(); updateSearchHistory()">
+              ${loadedCities[i]}
+            </button>
+        </li>`
     
     document.getElementById("saved-input-slot").innerHTML += lineItems;
      
@@ -40,7 +44,7 @@ function renderSearchHistory(loadedCities) {
 }  
 
 
-function getWeatherDataFromOperWeatherMap() {
+function getWeatherDataFromOpenWeatherMap() {
     
     let geoUrl = 'https://api.openweathermap.org/data/2.5/forecast?q='+cityInput.value+'&appid=0c3ce50143c8c2fe7bba1d43adafe5c6';
     
