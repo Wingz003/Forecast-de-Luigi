@@ -15,6 +15,7 @@ The dashboard generates buttons for your recent history, generating all the info
 
 2. After inputting your text, you will then be able to see all the information of the city of your choice.
   - Notice that you can click on the buttons below the search bar to go back to previous searches at the click of a button!
+  
 ![](img/onClickHistoryButtons.png) 
 
 
