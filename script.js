@@ -10,12 +10,15 @@ let loadedCities;
 if (!localStorage.getItem("cityKey")) {
   localStorage.setItem("cityKey", JSON.stringify([]));
 }
+loadedCities = JSON.parse(localStorage.getItem("cityKey"));
+
+renderSearchHistory();
 
 searchBtn.addEventListener("click", function () {
   getWeatherDataFromOpenWeatherMap();
   updateSearchHistory();
-  renderSearchHistory(loadedCities);
-})
+  renderSearchHistory();
+});
 
 function updateSearchHistory() { 
   loadedCities = JSON.parse(localStorage.getItem("cityKey"));
@@ -25,13 +28,14 @@ function updateSearchHistory() {
   
   
 }
+
 function renderSearchHistory() {
   document.getElementById("saved-input-slot").innerHTML = "";
   for (let i = 0; i < loadedCities.length; i++) {
     let lineItems = 
     
         `<li>
-            <button onclick="getWeatherDataFromOpenWeatherMap(); updateSearchHistory()">
+            <button class="history-button" onclick="overrideTextBox('${loadedCities[i]}'); getWeatherDataFromOpenWeatherMap(); updateSearchHistory()">
               ${loadedCities[i]}
             </button>
         </li>`
@@ -42,7 +46,9 @@ function renderSearchHistory() {
 
 
 }  
-
+function overrideTextBox(clickedCity) {
+  cityInput.value = clickedCity;
+}
 
 function getWeatherDataFromOpenWeatherMap() {
     
